@@ -1,5 +1,6 @@
-// const PokemonCard = () => {
-//   return <div>PokemonCard</div>;
-// };
+import PokemonList from "./PokemonList";
+const PokemonCard = () => {
+  return <div>{PokemonList}</div>;
+};
 
-// export default PokemonCard;
+export default PokemonCard;
