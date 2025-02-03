@@ -5,12 +5,13 @@ const Home = () => {
 
   return (
     <div>
+      <h1>POCKETmon</h1>
       <button
         onClick={() => {
           navigate("/dex");
         }}
       >
-        포켓몬도감 시작하기기
+        포켓몬도감으로 이동!
       </button>
     </div>
   );

@@ -1,5 +1,5 @@
-const PokemonCard = () => {
-  return <div>PokemonCard</div>;
-};
+// const PokemonCard = () => {
+//   return <div>PokemonCard</div>;
+// };
 
-export default PokemonCard;
+// export default PokemonCard;
