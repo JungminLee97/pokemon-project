@@ -3,51 +3,55 @@ import styled from "styled-components";
 import MOCK_DATA from "../Components/MOCK_DATA";
 import PokemonList from "../Components/PokemonList";
 import { useState } from "react";
+
 const Dex = () => {
   const [pokemons, setPokemons] = useState(MOCK_DATA);
-  const [createPokemon, setCreatePokemon] = useState(["", "", "", "", "", ""]);
+  const [createPokemon, setCreatePokemon] = useState([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ]); // 초기화 null로 설정
   const navigate = useNavigate();
 
+  // 포켓몬 추가 함수
   const CreatedPokemon = (pokemon) => {
     const newCreatePokemon = [...createPokemon];
-    for (let i = 0; i <= newCreatePokemon.length; i++) {
-      if (newCreatePokemon[i] === "") {
+    for (let i = 0; i < newCreatePokemon.length; i++) {
+      if (newCreatePokemon[i] === null) {
+        // null인 자리에 포켓몬 추가
         newCreatePokemon[i] = pokemon;
         setCreatePokemon(newCreatePokemon);
         return;
       }
     }
-    if (createPokemon.length > 5) {
-      alert("최대 6마리까지 잡을수있습니다!");
-      return;
-    }
-    if (!createPokemon.find((p) => p.id === pokemon.id)) {
-      setCreatePokemon((prev) => [...prev, pokemon]);
-    }
+    alert("최대 6마리까지 잡을 수 있습니다!"); // 포켓몬이 6마리 넘을 때
   };
-  const removedPokemon = (id) => {
-    setCreatePokemon(
-      createPokemon.filter((p) => {
-        return p.id !== id;
-      })
-    );
+
+  // 포켓몬 삭제 함수
+  const removedPokemon = (index) => {
+    const newCreatePokemon = [...createPokemon];
+    newCreatePokemon[index] = null; // 해당 자리를 null로 비움
+    setCreatePokemon(newCreatePokemon);
   };
+
   return (
     <div>
       <NavBox>
-        <NavBox1>나만의포켓몬</NavBox1>
+        <NavBox1>나만의 포켓몬</NavBox1>
         <NavBox2>
-          {createPokemon.map((poke) => (
-            <NavBox3 key={poke.id}>
-              <img src={poke.img_url} alt={poke.korean_name} />
-
-              <button
-                onClick={() => {
-                  removedPokemon(poke.id);
-                }}
-              >
-                삭제
-              </button>
+          {createPokemon.map((poke, index) => (
+            <NavBox3 key={index}>
+              {poke ? ( // 포켓몬이 있으면 보여주고, 없으면 빈 슬롯
+                <>
+                  <img src={poke.img_url} alt={poke.korean_name} />
+                  <button onClick={() => removedPokemon(index)}>삭제</button>
+                </>
+              ) : (
+                <span>빈 슬롯</span>
+              )}
             </NavBox3>
           ))}
         </NavBox2>
@@ -55,20 +59,8 @@ const Dex = () => {
       <MainBox>
         <PokemonList CreatedPokemon={CreatedPokemon} pokemons={pokemons} />
       </MainBox>
-      <button
-        onClick={() => {
-          navigate("/");
-        }}
-      >
-        home으로돌아가는버튼입니다
-      </button>
-      <button
-        onClick={() => {
-          navigate("/detail");
-        }}
-      >
-        디테일카드로이동
-      </button>
+      <button onClick={() => navigate("/")}>home으로 돌아가기</button>
+      <button onClick={() => navigate("/detail")}>디테일 카드로 이동</button>
     </div>
   );
 };
