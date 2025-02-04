@@ -22,7 +22,6 @@ const Dex = () => {
         </NavBox2>
       </NavBox>
       <MainBox>
-        {/* <MainBox1 /> */}
         <PokemonList pokemons={pokemons} />
       </MainBox>
       <button
