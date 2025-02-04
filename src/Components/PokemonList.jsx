@@ -13,13 +13,13 @@ const MainBox1 = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-const PokemonList = ({ pokemons }) => {
+const PokemonList = ({ CreatedPokemon, pokemons }) => {
   return (
     <>
       {pokemons.map((pokemon) => {
         return (
           <MainBox1 key={pokemon.id}>
-            <PokemonCard pokemon={pokemon} />
+            <PokemonCard CreatedPokemon={CreatedPokemon} pokemon={pokemon} />
           </MainBox1>
         );
       })}

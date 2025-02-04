@@ -3,26 +3,57 @@ import styled from "styled-components";
 import MOCK_DATA from "../Components/MOCK_DATA";
 import PokemonList from "../Components/PokemonList";
 import { useState } from "react";
-
 const Dex = () => {
   const [pokemons, setPokemons] = useState(MOCK_DATA);
+  const [createPokemon, setCreatePokemon] = useState(["", "", "", "", "", ""]);
   const navigate = useNavigate();
 
+  const CreatedPokemon = (pokemon) => {
+    const newCreatePokemon = [...createPokemon];
+    for (let i = 0; i <= newCreatePokemon.length; i++) {
+      if (newCreatePokemon[i] === "") {
+        newCreatePokemon[i] = pokemon;
+        setCreatePokemon(newCreatePokemon);
+        return;
+      }
+    }
+    if (createPokemon.length > 5) {
+      alert("최대 6마리까지 잡을수있습니다!");
+      return;
+    }
+    if (!createPokemon.find((p) => p.id === pokemon.id)) {
+      setCreatePokemon((prev) => [...prev, pokemon]);
+    }
+  };
+  const removedPokemon = (id) => {
+    setCreatePokemon(
+      createPokemon.filter((p) => {
+        return p.id !== id;
+      })
+    );
+  };
   return (
     <div>
       <NavBox>
         <NavBox1>나만의포켓몬</NavBox1>
         <NavBox2>
-          <NavBox3 />
-          <NavBox3 />
-          <NavBox3 />
-          <NavBox3 />
-          <NavBox3 />
-          <NavBox3 />
+          {createPokemon.map((poke) => (
+            <NavBox3 key={poke.id}>
+              <img src={poke.img_url} alt={poke.korean_name} />
+
+              <button
+                onClick={() => {
+                  removedPokemon(poke.id);
+                }}
+              >
+                삭제
+              </button>
+            </NavBox3>
+          ))}
         </NavBox2>
       </NavBox>
       <MainBox>
-        <PokemonList pokemons={pokemons} />
+        <PokemonList CreatedPokemon={CreatedPokemon} pokemons={pokemons} />
       </MainBox>
       <button
         onClick={() => {
@@ -85,16 +116,6 @@ const NavBox3 = styled.div`
   height: 120px;
   border: 1px dashed black;
   background-color: white;
-`;
-const MainBox1 = styled.div`
-  width: 210px;
-  height: 250px;
-  border-radius: 10px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  margin: 10px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 `;
 
 export default Dex;
