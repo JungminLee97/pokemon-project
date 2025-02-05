@@ -55,7 +55,8 @@ const NavPokemonCardImg = styled.div`
 `;
 const NavBox = styled.div`
   width: 1400px;
-  height: 300px;
+  height: auto;
+  min-height: 300px;
   border: 1px solid red;
   margin: 30px auto 30px auto;
   display: flex;
@@ -73,7 +74,8 @@ const NavBox1 = styled.div`
 `;
 const NavBox2 = styled.div`
   width: 1400px;
-  height: 200px;
+  height: auto;
+  min-height: 200px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

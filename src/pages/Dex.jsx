@@ -5,7 +5,7 @@ import PokemonList from "../Components/PokemonList";
 import { useState } from "react";
 import pokeball from "../assets/pokeball.png";
 import Dashboard from "../Components/Dashboard";
-import { Toaster, toast } from "sooner";
+import { Toaster, toast } from "react-hot-toast";
 const Dex = () => {
   const [pokemons, setPokemons] = useState(MOCK_DATA);
   const [createPokemon, setCreatePokemon] = useState([
@@ -24,7 +24,7 @@ const Dex = () => {
         return poke && poke.id === pokemon.id;
       })
     ) {
-      toast.warning("다른 포켓몬도 잡아봐!");
+      toast("다른 포켓몬도 잡아봐", { type: "warning", duration: 3000 });
       return;
     }
     const newCreatePokemon = [...createPokemon];
@@ -37,7 +37,7 @@ const Dex = () => {
       }
     }
 
-    toast.warning("6마리 포켓몬이 최대야 ㅠ.ㅠ");
+    toast("6마리 포켓몬이 최대야", { type: "warning", duration: 3000 });
   };
 
   const removedPokemon = (index) => {
