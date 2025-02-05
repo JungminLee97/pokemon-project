@@ -4,7 +4,6 @@ import MOCK_DATA from "../Components/MOCK_DATA";
 import PokemonList from "../Components/PokemonList";
 import { useState } from "react";
 import pokeball from "../assets/pokeball.png";
-import Dashboard from "../Components/Dashboard";
 const Dex = () => {
   const [pokemons, setPokemons] = useState(MOCK_DATA);
   const [createPokemon, setCreatePokemon] = useState([
@@ -19,14 +18,6 @@ const Dex = () => {
 
   // 포켓몬 추가 함수
   const CreatedPokemon = (pokemon) => {
-    if (
-      createPokemon.some((poke) => {
-        return poke && poke.id === pokemon.id;
-      })
-    ) {
-      alert("다른포켓몬도 잡아봐!");
-      return;
-    }
     const newCreatePokemon = [...createPokemon];
     for (let i = 0; i < newCreatePokemon.length; i++) {
       if (newCreatePokemon[i] === null) {
@@ -48,7 +39,32 @@ const Dex = () => {
 
   return (
     <div>
-      <Dashboard></Dashboard>
+      <NavBox>
+        <NavBox1>나만의 포켓몬</NavBox1>
+        <NavBox2>
+          {createPokemon.map((poke, index) => (
+            <NavBox3 key={index}>
+              {poke ? ( // 포켓몬이 있으면 보여주고, 없으면 빈 슬롯
+                <NavPokemonCardImg>
+                  <img src={poke.img_url} alt={poke.korean_name} />
+                  <NavpokemonCardImgMargin>
+                    {poke.korean_name}
+                  </NavpokemonCardImgMargin>
+                  <NavpokemonCardImgMargin>{poke.id}</NavpokemonCardImgMargin>
+                  <NavpokemonCardImgMargin>
+                    {poke.types.join(", ")}
+                  </NavpokemonCardImgMargin>
+                  <button onClick={() => removedPokemon(index)}>삭제</button>
+                </NavPokemonCardImg>
+              ) : (
+                <>
+                  <NavPokeballImg src={pokeball} alt="몬스터볼" />
+                </>
+              )}
+            </NavBox3>
+          ))}
+        </NavBox2>
+      </NavBox>
       <MainBox>
         <PokemonList CreatedPokemon={CreatedPokemon} pokemons={pokemons} />
       </MainBox>
@@ -71,6 +87,20 @@ const MainBox = styled.div`
   align-content: flex-start;
 `;
 
+const MainBox1 = styled.div`
+  width: 210px;
+  height: 250px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  overflow-wrap: break-word;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const NavPokeballImg = styled.img`
   width: 80px;
   height: 60px;
@@ -79,8 +109,8 @@ const NavpokemonCardImgMargin = styled.p`
   margin: 6px;
 `;
 const NavPokemonCardImg = styled.div`
-  width: 190px;
-  height: 240px;
+  width: 210px;
+  height: 200px;
   border-radius: 10px;
   background-color: white;
   display: flex;
@@ -104,8 +134,8 @@ const NavBox1 = styled.div`
   width: 1400px;
   height: 100px;
   text-align: center;
-  align-content: flex-start;
-  font-size: 30px;
+  align-content: flex-end;
+  font-size: large;
   color: red;
   font-weight: 600;
 `;
@@ -118,10 +148,8 @@ const NavBox2 = styled.div`
   align-items: center;
 `;
 const NavBox3 = styled.div`
-  width: auto;
-  height: auto;
-  min-width: 120px;
-  min-height: 120px;
+  width: 120px;
+  height: 120px;
   border: 1px dashed black;
   background-color: white;
   display: flex;
