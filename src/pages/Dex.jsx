@@ -6,7 +6,7 @@ import { useState } from "react";
 import pokeball from "../assets/pokeball.png";
 import Dashboard from "../Components/Dashboard";
 import { Toaster, toast } from "react-hot-toast";
-import PokemonDetail from "../Components/PokemonDetail";
+
 const Dex = () => {
   const [pokemons, setPokemons] = useState(MOCK_DATA);
   const [createPokemon, setCreatePokemon] = useState([
@@ -19,9 +19,9 @@ const Dex = () => {
   ]);
   const navigate = useNavigate();
 
-  const CreatedPokemon = (pokemon) => {
+  const addPokemon = (pokemon) => {
     if (
-      createPokemon.some((poke) => {
+      createPokemon.find((poke) => {
         return poke && poke.id === pokemon.id;
       })
     ) {
@@ -56,10 +56,16 @@ const Dex = () => {
         createPokemon={createPokemon}
       ></Dashboard>
       <MainBox>
-        <PokemonList CreatedPokemon={CreatedPokemon} pokemons={pokemons} />
+        <PokemonList addPokemon={addPokemon} pokemons={pokemons} />
       </MainBox>
 
-      <button onClick={() => navigate("/detail")}>디테일 카드로 이동</button>
+      <button
+        onClick={() => {
+          navigate("/detail");
+        }}
+      >
+        디테일 카드로 이동
+      </button>
       <Link to={"/detail"}>ㅇ</Link>
     </div>
   );

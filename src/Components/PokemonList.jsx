@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import { useNavigate } from "react-router-dom";
-import PokemonDetail from "./PokemonDetail";
+
 const MainBox1 = styled.div`
   width: 210px;
   height: 250px;
@@ -15,7 +15,7 @@ const MainBox1 = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-const PokemonList = ({ CreatedPokemon, pokemons }) => {
+const PokemonList = ({ addPokemon, pokemons }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -27,7 +27,7 @@ const PokemonList = ({ CreatedPokemon, pokemons }) => {
             }}
             key={pokemon.id}
           >
-            <PokemonCard CreatedPokemon={CreatedPokemon} pokemon={pokemon} />
+            <PokemonCard addPokemon={addPokemon} pokemon={pokemon} />
           </MainBox1>
         );
       })}

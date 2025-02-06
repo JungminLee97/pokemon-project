@@ -10,7 +10,7 @@ const ChangeDivTags = styled.div`
 const ChangeBtn = styled.button`
   margin: 8px;
 `;
-const PokemonCard = ({ CreatedPokemon, pokemon }) => {
+const PokemonCard = ({ addPokemon, pokemon }) => {
   return (
     <ChangeDivTags>
       <img src={pokemon.img_url} alt={pokemon.korean_name} />
@@ -20,7 +20,7 @@ const PokemonCard = ({ CreatedPokemon, pokemon }) => {
       <ChangeBtn
         onClick={(e) => {
           e.stopPropagation();
-          CreatedPokemon(pokemon);
+          addPokemon(pokemon);
         }}
       >
         추가
