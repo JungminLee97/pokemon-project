@@ -10,17 +10,16 @@ const ChangeDivTags = styled.div`
 const ChangeBtn = styled.button`
   margin: 8px;
 `;
-
 const PokemonCard = ({ CreatedPokemon, pokemon }) => {
   return (
     <ChangeDivTags>
       <img src={pokemon.img_url} alt={pokemon.korean_name} />
-
       <ChangeTags>{pokemon.korean_name}</ChangeTags>
       <ChangeTags>{pokemon.id}</ChangeTags>
       <ChangeTags>{pokemon.types.join(", ")}</ChangeTags>
       <ChangeBtn
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           CreatedPokemon(pokemon);
         }}
       >

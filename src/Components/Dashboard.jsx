@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import pokeball from "../assets/pokeball.png";
-
+import { useNavigate } from "react-router-dom";
 const Dashboard = ({ removedPokemon, createPokemon }) => {
+  const navigate = useNavigate();
   return (
     <>
       <NavBox>
-        <NavBox1>나만의 포켓몬</NavBox1>
+        <NavBox1>
+          나만의 포켓몬
+          <BackToHomeBtn onClick={() => navigate("/")}>Home</BackToHomeBtn>
+        </NavBox1>
         <NavBox2>
           {createPokemon.map((poke, index) => (
             <NavBox3 key={index}>
@@ -33,6 +37,11 @@ const Dashboard = ({ removedPokemon, createPokemon }) => {
     </>
   );
 };
+const BackToHomeBtn = styled.button`
+  background-color: #fec301;
+  color: red;
+  font-weight: bold;
+`;
 const NavPokeballImg = styled.img`
   width: 80px;
   height: 60px;

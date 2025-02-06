@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MOCK_DATA from "../Components/MOCK_DATA";
 import PokemonList from "../Components/PokemonList";
@@ -6,6 +6,7 @@ import { useState } from "react";
 import pokeball from "../assets/pokeball.png";
 import Dashboard from "../Components/Dashboard";
 import { Toaster, toast } from "react-hot-toast";
+import PokemonDetail from "../Components/PokemonDetail";
 const Dex = () => {
   const [pokemons, setPokemons] = useState(MOCK_DATA);
   const [createPokemon, setCreatePokemon] = useState([
@@ -49,6 +50,7 @@ const Dex = () => {
   return (
     <div>
       <Toaster position="top-center" />
+
       <Dashboard
         removedPokemon={removedPokemon}
         createPokemon={createPokemon}
@@ -56,8 +58,9 @@ const Dex = () => {
       <MainBox>
         <PokemonList CreatedPokemon={CreatedPokemon} pokemons={pokemons} />
       </MainBox>
-      <button onClick={() => navigate("/")}>home으로 돌아가기</button>
+
       <button onClick={() => navigate("/detail")}>디테일 카드로 이동</button>
+      <Link to={"/detail"}>ㅇ</Link>
     </div>
   );
 };
