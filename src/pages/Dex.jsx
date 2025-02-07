@@ -6,7 +6,7 @@ import { useState } from "react";
 import pokeball from "../assets/pokeball.png";
 import Dashboard from "../Components/Dashboard";
 import { Toaster, toast } from "react-hot-toast";
-
+import { PokemonContext } from "../context/PokemonContext";
 const Dex = () => {
   const [pokemons, setPokemons] = useState(MOCK_DATA);
   const [createPokemon, setCreatePokemon] = useState([
@@ -50,15 +50,12 @@ const Dex = () => {
   return (
     <div>
       <Toaster position="top-center" />
-
-      <Dashboard
-        removedPokemon={removedPokemon}
-        createPokemon={createPokemon}
-      ></Dashboard>
-      <MainBox>
-        <PokemonList addPokemon={addPokemon} pokemons={pokemons} />
-      </MainBox>
-
+      <PokemonContext.Provider value={{ addPokemon, removedPokemon, pokemons }}>
+        <Dashboard createPokemon={createPokemon}></Dashboard>
+        <MainBox>
+          <PokemonList />
+        </MainBox>
+      </PokemonContext.Provider>
       <button
         onClick={() => {
           navigate("/detail");

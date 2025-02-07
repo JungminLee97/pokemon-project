@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import { useNavigate } from "react-router-dom";
-
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 const MainBox1 = styled.div`
   width: 210px;
   height: 250px;
@@ -15,8 +16,9 @@ const MainBox1 = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-const PokemonList = ({ addPokemon, pokemons }) => {
+const PokemonList = () => {
   const navigate = useNavigate();
+  const { pokemons } = useContext(PokemonContext);
   return (
     <>
       {pokemons.map((pokemon) => {
@@ -27,7 +29,7 @@ const PokemonList = ({ addPokemon, pokemons }) => {
             }}
             key={pokemon.id}
           >
-            <PokemonCard addPokemon={addPokemon} pokemon={pokemon} />
+            <PokemonCard pokemon={pokemon} />
           </MainBox1>
         );
       })}

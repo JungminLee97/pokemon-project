@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { PokemonContext } from "../context/PokemonContext";
+import { useContext } from "react";
 const ChangeTags = styled.p`
   margin: 8px;
 `;
@@ -10,7 +12,8 @@ const ChangeDivTags = styled.div`
 const ChangeBtn = styled.button`
   margin: 8px;
 `;
-const PokemonCard = ({ addPokemon, pokemon }) => {
+const PokemonCard = ({ pokemon }) => {
+  const { addPokemon } = useContext(PokemonContext);
   return (
     <ChangeDivTags>
       <img src={pokemon.img_url} alt={pokemon.korean_name} />

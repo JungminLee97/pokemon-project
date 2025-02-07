@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import pokeball from "../assets/pokeball.png";
 import { useNavigate } from "react-router-dom";
-const Dashboard = ({ removedPokemon, createPokemon }) => {
+import { PokemonContext } from "../context/PokemonContext";
+import { useContext } from "react";
+const Dashboard = ({ createPokemon }) => {
   const navigate = useNavigate();
+  const { removedPokemon } = useContext(PokemonContext);
+
   return (
     <>
       <NavBox>
