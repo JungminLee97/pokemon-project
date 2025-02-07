@@ -1,4 +1,3 @@
-import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MOCK_DATA from "../Components/MOCK_DATA";
 import PokemonList from "../Components/PokemonList";
@@ -7,17 +6,29 @@ import pokeball from "../assets/pokeball.png";
 import Dashboard from "../Components/Dashboard";
 import { Toaster, toast } from "react-hot-toast";
 import { PokemonContext } from "../context/PokemonContext";
+import { useEffect } from "react";
 const Dex = () => {
-  const [pokemons, setPokemons] = useState(MOCK_DATA);
-  const [createPokemon, setCreatePokemon] = useState([
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ]);
-  const navigate = useNavigate();
+  const [pokemons, setPokemons] = useState(() => {
+    try {
+      const localGetDatas = localStorage.getItem("pokemons");
+      return localGetDatas ? JSON.parse(localGetDatas) : MOCK_DATA;
+    } catch (error) {
+      console.error("localStorage 파싱 오류:", error);
+      return MOCK_DATA;
+    }
+  });
+
+  const [createPokemon, setCreatePokemon] = useState(() => {
+    const localGetData = localStorage.getItem("createPokemon");
+    return localGetData
+      ? JSON.parse(localGetData)
+      : [null, null, null, null, null, null];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("pokemons", JSON.stringify(pokemons));
+    localStorage.setItem("createPokemon", JSON.stringify(createPokemon));
+  }, [pokemons, createPokemon]);
 
   const addPokemon = (pokemon) => {
     if (
@@ -56,14 +67,6 @@ const Dex = () => {
           <PokemonList />
         </MainBox>
       </PokemonContext.Provider>
-      <button
-        onClick={() => {
-          navigate("/detail");
-        }}
-      >
-        디테일 카드로 이동
-      </button>
-      <Link to={"/detail"}>ㅇ</Link>
     </div>
   );
 };

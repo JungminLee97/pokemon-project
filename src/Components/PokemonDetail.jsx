@@ -4,7 +4,7 @@ const PokemonDetail = ({ pokemon }) => {
     <DetailPokemon>
       <Tag1>{pokemon.korean_name}</Tag1>
       <Tag2 src={pokemon.img_url} alt={pokemon.korean_name} />
-      <Tag3>{pokemon.types}</Tag3>
+      <Tag3>{pokemon.types.join(",")}</Tag3>
       <Tag4>{pokemon.description}</Tag4>
     </DetailPokemon>
   );
