@@ -1,3 +1,7 @@
+#dd
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fpokemon-project-theta-eight.vercel.app&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fpokemon-project-theta-eight.vercel.app&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fpokemon-project-theta-eight.vercel.app&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false
 # 프로젝트 스크린샷
 <img src="https://github.com/JungminLee97/pokemon-project/blob/main/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202025-02-11%20112308.png" />
 <img src="https://github.com/JungminLee97/pokemon-project/blob/main/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202025-02-11%20112318.png" />
