@@ -2,7 +2,6 @@ import styled from "styled-components";
 import MOCK_DATA from "../Components/MOCK_DATA";
 import PokemonList from "../Components/PokemonList";
 import { useState } from "react";
-import pokeball from "../assets/pokeball.png";
 import Dashboard from "../Components/Dashboard";
 import { Toaster, toast } from "react-hot-toast";
 import { PokemonContext } from "../context/PokemonContext";
