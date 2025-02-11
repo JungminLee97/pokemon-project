@@ -1,3 +1,8 @@
+# 프로젝트 스크린샷
+
+
+
+
 # Vercel 배포 링크
 https://pokemon-project-theta-eight.vercel.app/
 <br> <br><br>
